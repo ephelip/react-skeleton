@@ -2,8 +2,10 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 
 //List components
-var List = require('./components/list/List.jsx');
-ReactDOM.render(<List />, document.getElementById('ingredients'));
+var ListManager = require('./components/list/ListManager.jsx');
+ReactDOM.render(<ListManager title="Cake" />, document.getElementById('cake'));
+ReactDOM.render(<ListManager title="Pie" />, document.getElementById('pie'));
+ReactDOM.render(<ListManager title="Sushi" headingColor="pink" />, document.getElementById('sushi'));
 
 //Form components
 var LeadCapture = require('./components/form/LeadCapture.jsx');

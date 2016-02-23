@@ -1,8 +1,7 @@
 {
   "name": "react-skeleton",
   "version": "1.0.1",
-  "description": "A skeleton for react app
-                    Contains a form skeleton",
+  "description": "A skeleton for react app / Contains a form skeleton, a list manager skeleton",
   "main": "index.js",
   "scripts": {
     "start": "watchify src/main.jsx -v -t [ babelify --presets [ react ] ] -o public/js/main.js",
