@@ -3,6 +3,9 @@ var EmailField = require('./EmailField.jsx');
 var NameField = require('./NameField.jsx');
 
 var LeadCapture = React.createClass({
+  getInitialState: function() {
+    return {submitted: false};
+  },
   onSubmit: function(e) {
     if (this.refs.fieldFirstName.state.value == "") {
       alert("First name cannot be empty");
@@ -21,19 +24,38 @@ var LeadCapture = React.createClass({
       this.refs.fieldEmail.clear();
       this.refs.fieldFirstName.clear();
       this.refs.fieldLastName.clear();
+
+      this.setState({submitted: true});
+      alert("Hello " + this.refs.fieldFirstName.state.value + " you registered succesfully");
     }
   },
   render: function() {
+
+    var successStyle = {
+      color: "green",
+      visibility: this.state.submitted ? "visible" : "hidden"
+    }
+
     return (
-      <div className="col-sm-3">
+      <div>
         <div className="panel panel-default">
+          <div className="panel-heading">
+            <h4>Register</h4>
+          </div>
           <div className="panel-body">
             <NameField nametype="First" ref="fieldFirstName"/>
             <br/>
             <NameField nametype="Last" ref="fieldLastName"/>
             <br/>
             <EmailField ref="fieldEmail"/>
-            <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
+            <div className="row">
+              <div className="col-sm-6">
+                <button className="btn btn-primary" onClick={this.onSubmit}>Submit</button>
+              </div>
+              <div className="col-sm-2">
+                <h5 style={successStyle}>Success</h5>
+              </div>
+            </div>
           </div>
         </div>
       </div>

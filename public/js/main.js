@@ -24722,7 +24722,11 @@ var BasePage = React.createClass({
       'div',
       null,
       React.createElement(NavBar, { navData: navLinks, bgColor: '#FFF', titleColor: '#3097d1' }),
-      this.props.children
+      React.createElement(
+        'div',
+        { className: 'container' },
+        this.props.children
+      )
     );
   }
 });
@@ -24741,7 +24745,7 @@ var FormPage = React.createClass({
 
     return React.createElement(
       'div',
-      null,
+      { className: 'col-sm-5' },
       React.createElement(LeadCapture, null)
     );
   }
@@ -24891,6 +24895,9 @@ var NameField = require('./NameField.jsx');
 var LeadCapture = React.createClass({
   displayName: 'LeadCapture',
 
+  getInitialState: function () {
+    return { submitted: false };
+  },
   onSubmit: function (e) {
     if (this.refs.fieldFirstName.state.value == "") {
       alert("First name cannot be empty");
@@ -24909,15 +24916,33 @@ var LeadCapture = React.createClass({
       this.refs.fieldEmail.clear();
       this.refs.fieldFirstName.clear();
       this.refs.fieldLastName.clear();
+
+      this.setState({ submitted: true });
+      alert("Hello " + this.refs.fieldFirstName.state.value + " you registered succesfully");
     }
   },
   render: function () {
+
+    var successStyle = {
+      color: "green",
+      visibility: this.state.submitted ? "visible" : "hidden"
+    };
+
     return React.createElement(
       'div',
-      { className: 'col-sm-3' },
+      null,
       React.createElement(
         'div',
         { className: 'panel panel-default' },
+        React.createElement(
+          'div',
+          { className: 'panel-heading' },
+          React.createElement(
+            'h4',
+            null,
+            'Register'
+          )
+        ),
         React.createElement(
           'div',
           { className: 'panel-body' },
@@ -24927,9 +24952,26 @@ var LeadCapture = React.createClass({
           React.createElement('br', null),
           React.createElement(EmailField, { ref: 'fieldEmail' }),
           React.createElement(
-            'button',
-            { className: 'btn btn-primary', onClick: this.onSubmit },
-            'Submit'
+            'div',
+            { className: 'row' },
+            React.createElement(
+              'div',
+              { className: 'col-sm-6' },
+              React.createElement(
+                'button',
+                { className: 'btn btn-primary', onClick: this.onSubmit },
+                'Submit'
+              )
+            ),
+            React.createElement(
+              'div',
+              { className: 'col-sm-2' },
+              React.createElement(
+                'h5',
+                { style: successStyle },
+                'Success'
+              )
+            )
           )
         )
       )

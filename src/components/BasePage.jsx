@@ -9,7 +9,9 @@ var BasePage = React.createClass({
     return (
       <div>
         <NavBar navData={navLinks} bgColor="#FFF" titleColor="#3097d1" />
-        {this.props.children}
+        <div className="container">
+            {this.props.children}
+        </div>
       </div>
     );
   }

@@ -8,7 +8,7 @@ var FormPage = React.createClass({
 
     return (
 
-        <div>
+        <div  className="col-sm-5">
           <LeadCapture />
           {/*{this.props.children}*/}
         </div>
