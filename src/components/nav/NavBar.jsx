@@ -1,5 +1,7 @@
 var React = require('react');
 var NavItem = require('./NavItem.jsx')
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 var NavBar = React.createClass({
     render: function() {
@@ -15,17 +17,16 @@ var NavBar = React.createClass({
 
         var linkStyle = {};
 
-        if (this.props.bgColor) 
+        if (this.props.bgColor)
             navStyle.background = this.props.bgColor;
-        
-        if (this.props.titleColor) 
+
+        if (this.props.titleColor)
             titleStyle.color = this.props.titleColor;
-        
-        if (this.props.linkColor) 
+
+        if (this.props.linkColor)
             linkStyle.color = this.props.linkColor;
-        
+
         var createLinkItem = function(item, index) {
-            console.log("yo");
             return (<NavItem aStyle={linkStyle} key={item.title + index} href={item.href} title={item.title}/>);
         };
         return (
@@ -37,7 +38,7 @@ var NavBar = React.createClass({
                             <span className="icon-bar"></span>
                             <span className="icon-bar"></span>
                         </button>
-                        <a style={titleStyle} className="navbar-brand" href="#">React Skeleton full</a>
+                        <Link style={titleStyle} className="navbar-brand" to="/">React Skeleton full</Link>
                     </div>
                     <div className="collapse navbar-collapse" id="nav-collapse">
                         <ul className="nav navbar-nav">

@@ -1,11 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 
+var Routes = require('./Routes.jsx');
+ReactDOM.render(Routes, document.getElementById('main'));
+
+
 //NavBar components
-var NavBar = require('./components/nav/NavBar.jsx');
-var navLinks = require('./componentsData/nav/NavList');
-ReactDOM.render(<NavBar navData={navLinks} bgColor="#FFF"
-                                           titleColor="#3097d1" />, document.getElementById('nav'));
+// var NavBar = require('./components/nav/NavBar.jsx');
+// var navLinks = require('./componentsData/nav/NavList');
+// ReactDOM.render(<NavBar navData={navLinks} bgColor="#FFF"
+//                                            titleColor="#3097d1" />, document.getElementById('nav'));
 
 //
 // //List components

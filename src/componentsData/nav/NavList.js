@@ -1,12 +1,12 @@
 var NavLinks = [{
     "title": "Home",
-    "href": "#"
+    "href": "/"
   }, {
-    "title": "Page1",
-    "href": "#"
+    "title": "Form",
+    "href": "/form"
   }, {
-    "title": "Page2",
-    "href": "#"
+    "title": "List",
+    "href": "/list"
   }];
 
   module.exports = NavLinks;

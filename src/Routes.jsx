@@ -1,7 +1,7 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var Router = ReactRouter.Router;
-var Routes = ReactRouter.Route;
+var Route = ReactRouter.Route;
 var IndexRoute = ReactRouter.IndexRoute;
 
 var CreateHistory = require('history/Lib/createHashHistory');
@@ -11,6 +11,7 @@ var History = new CreateHistory({
 });
 
 var BasePage = require('./components/BasePage.jsx');
+var HomePage = require('./components/HomePage.jsx');
 var ListPage = require('./components/ListPage.jsx');
 var FormPage = require('./components/FormPage.jsx');
 
