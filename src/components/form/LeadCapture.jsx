@@ -1,8 +1,12 @@
 var React = require('react');
 var EmailField = require('./EmailField.jsx');
 var NameField = require('./NameField.jsx');
+var Reflux = require('reflux');
+var Actions = require('../../reflux/Actions.jsx');
+var EmailStore = require('../../reflux/EmailStore.jsx');
 
 var LeadCapture = React.createClass({
+  mixins:[Reflux.listenTo(EmailStore, 'onChange')],
   getInitialState: function() {
     return {submitted: false};
   },
@@ -15,7 +19,7 @@ var LeadCapture = React.createClass({
       alert("Email not Valid");
     } else {
       //Send request to email host or server
-      var httpRequestBody = {
+      var subscriber = {
         email: this.refs.fieldEmail.state.value,
         firstName: this.refs.fieldFirstName.state.value,
         lastName: this.refs.fieldLastName.state.value
@@ -25,9 +29,14 @@ var LeadCapture = React.createClass({
       this.refs.fieldFirstName.clear();
       this.refs.fieldLastName.clear();
 
-      this.setState({submitted: true});
-      alert("Hello " + this.refs.fieldFirstName.state.value + " you registered succesfully");
+      Actions.submitEmail(subscriber);
     }
+  },
+  onChange: function(msg) {
+    console.log(msg);
+    this.setState({submitted: true});
+    alert("Hello " + this.refs.fieldFirstName.state.value + " you registered succesfully");
+
   },
   render: function() {
 

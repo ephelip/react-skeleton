@@ -18,22 +18,12 @@ var PORT = process.env.PORT || 6060;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-var ingredients = [
+var subscribers = [
     {
         "id": "234kjw",
-        "text": "Eggs"
-    },
-    {
-        "id": "as82w",
-        "text": "Milk"
-    },
-    {
-        "id": "234sk1",
-        "text": "Bacon"
-    },
-    {
-        "id": "ppo3j3",
-        "text": "Frog Legs"
+        "email": "etienne.phelip@gmail.com",
+        "firstName": "Etienne",
+        "lastName": "Phelip"
     }
 ];
 
@@ -44,16 +34,17 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/ingredients', function(req, res) {
+app.get('/subscribers', function(req, res) {
     console.log("GET From SERVER");
-    res.send(ingredients);
+    res.send(subscribers);
 });
 
-app.post('/ingredients', function(req, res) {
-    var ingredient = req.body;
-    console.log(req.body);
-    ingredients.push(ingredient);
-    res.status(200).send("Successfully posted ingredient");
+app.post('/subscribers', function(req, res) {
+    var subscriber = req.body;
+    subscriber.id = Math.floor(Date.now() /1000) + req.body.email;
+    console.log("POST: " + req.body);
+    subscribers.push(subscriber);
+    res.status(200).send("Successfully added subscriber");
 });
 
 //Server start
